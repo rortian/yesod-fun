@@ -38,10 +38,9 @@ sampleForm = renderDivs $ (,)
     <$> fileAFormReq "Choose a file"
     <*> areq textField "What's on the file?" Nothing
 
-getSigMapsR :: Handler RepHtml
-getSigMapsR = do
+getSingMapsR :: Handler RepHtml
+getSingMapsR = do
     let handlerName = "getSigMapsR" :: Text
     defaultLayout $ do
-        aDomId <- lift newIdent
         setTitle "Hey!"
-        $(widgetFile "homepage")
+        $(widgetFile "singmap")

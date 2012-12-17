@@ -4,4 +4,6 @@
 /favicon.ico FaviconR GET
 /robots.txt RobotsR GET
 
+/singmaps SingMapsR GET
+
 / HomeR GET POST

@@ -43,15 +43,14 @@ getSingMapsR = do
     (widget,enctype) <- generateFormPost singMapForm
     let handlerName = "getSigMapsR" :: Text
     defaultLayout $ do
+        aDomId <- lift newIdent
         setTitle "Hey!"
         $(widgetFile "singmap")
 
-singMapAForm :: Maybe SingMap -> AForm App App SingMap
-singMapAForm = SingMap
+singMapForm :: Html -> MForm App App (FormResult SingMap, Widget)
+singMapForm = renderDivs $ SingMap
     <$> areq intField "m" Nothing
     <*> areq intField "n" Nothing
     <*> areq doubleField "lambdaX" Nothing
     <*> areq doubleField "lambdaY" Nothing
 
-singMapForm :: Html -> MForm App App (FormResult SingMap, Widget)
-singMapForm = renderTable singMapAForm

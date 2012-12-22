@@ -24,7 +24,7 @@
     This is an example trivial Form. Read the #
     \<a href="http://www.yesodweb.com/book/forms">Forms chapter</a> #
     on the yesod book to learn more about them.
-    <form method=post action=@{HomeR}#form enctype=#{enctype}>
+    <form method=post action=@{SingMapsR}#form enctype=#{enctype}>
       ^{widget}
       <input type="submit" value="Send it!">
 

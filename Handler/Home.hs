@@ -54,3 +54,15 @@ singMapForm = renderDivs $ SingMap
     <*> areq doubleField "lambdaX" Nothing
     <*> areq doubleField "lambdaY" Nothing
 
+postSingMapsR :: Handler RepHtml
+postSingMapsR = do
+    ((result, widget), enctype) <- runFormPost singMapForm
+    let handlerName = "postHomeR" :: Text
+        submission = case result of
+            FormSuccess res -> Just res
+            _ -> Nothing
+
+    defaultLayout $ do
+        aDomId <- lift newIdent
+        setTitle "Bro, you posted!"
+        $(widgetFile "singmap")

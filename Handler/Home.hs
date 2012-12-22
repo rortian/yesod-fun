@@ -40,7 +40,7 @@ sampleForm = renderDivs $ (,)
 
 getSingMapsR :: Handler RepHtml
 getSingMapsR = do
-    (widget,enctype) <- generateFormPost singMapAForm
+    (widget,enctype) <- generateFormPost singMapForm
     let handlerName = "getSigMapsR" :: Text
     defaultLayout $ do
         setTitle "Hey!"
@@ -52,3 +52,6 @@ singMapAForm = SingMap
     <*> areq intField "n" Nothing
     <*> areq doubleField "lambdaX" Nothing
     <*> areq doubleField "lambdaY" Nothing
+
+singMapForm :: Html -> MForm App App (FormResult SingMap, Widget)
+singMapForm = renderTable singMapAForm

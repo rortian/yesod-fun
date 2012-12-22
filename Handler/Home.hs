@@ -60,10 +60,7 @@ postSingMapsR = do
     case result of
         FormSuccess res -> do
             entryId <- runDB $ insert res
-            defaultLayout $ do
-                aDomId <- lift newIdent
-                setTitle "Bro, you posted!"
-                $(widgetFile "singmap")
+            redirect $ SingMapR entryId
         _ ->
             defaultLayout $ do
                 aDomId <- lift newIdent

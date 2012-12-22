@@ -70,3 +70,12 @@ postSingMapsR = do
                 setTitle "Bro, you posted!"
                 $(widgetFile "singmap")
 
+getSingMapR :: SingMapId -> Handler RepHtml
+getSingMapR singMapId = do
+    (singMap) <- runDB $ do
+        singMap <- get404 singMapId
+        return (singMap)
+    defaultLayout $ do
+        aDomId <- lift newIdent
+        setTitle "Hey!"
+        $(widgetFile "singmap_single")

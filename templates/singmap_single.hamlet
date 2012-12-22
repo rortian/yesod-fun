@@ -1,6 +1,7 @@
-<ol>
+<ul>
 
-  <li #form>
-    This is an example trivial Form. Read the #
-    \<a href="http://www.yesodweb.com/book/forms">Forms chapter</a> #
-    on the yesod book to learn more about them.
+  <li>
+    m: #{singMapM singMap}
+
+  <li>
+    n: #{singMapN singMap}

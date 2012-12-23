@@ -16,14 +16,18 @@ getHomeR = do
 
 getGridsR :: Handler RepHtml
 getGridsR = do
-    redirect SingMapsR
+    (widget,enctype) <- generateFormPost gridForm
+    defaultLayout $ do
+        aDomId <- lift newIdent
+        setTitle "The grids are alive"
+        $(widgetFile "grid")
 
 postGridsR :: Handler RepHtml
 postGridsR = do
     redirect SingMapsR
 
-gridForm :: Maybe Grid -> Html -> MForm App App (FormResult Grid, Widget)
-gridForm grid = renderDivs $ Grid
+gridForm :: Html -> MForm App App (FormResult Grid, Widget)
+gridForm = renderDivs $ Grid
     <$> areq intField "width" Nothing
     <*> areq intField "height" Nothing
     <*> areq doubleField "scale" Nothing

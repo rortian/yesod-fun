@@ -22,6 +22,20 @@ postGridsR :: Handler RepHtml
 postGridsR = do
     redirect SingMapsR
 
+gridForm :: Maybe Grid -> Html -> MForm App App (FormResult Grid, Widget)
+gridForm grid = renderDivs $ Grid
+    <$> areq intField "width" Nothing
+    <*> areq intField "height" Nothing
+    <*> areq doubleField "scale" Nothing
+    <*> lmaps
+    where
+        lmaps = areq (selectField maps) "SingMap" Nothing
+            where
+                maps :: GHandler App App (OptionList SingMapId)
+                maps = do
+                    entities <- runDB $ selectList [] [Desc SingMapId]
+                    optionsPairs $ map (\singmap -> (singMapLambdaX $ entityVal singmap,entityKey singmap)) entities
+
 getGridR :: GridId -> Handler RepHtml
 getGridR gridId = do
     (grid) <- runDB $ do

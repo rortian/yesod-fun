@@ -40,8 +40,8 @@ sampleForm = renderDivs $ (,)
 
 getSingMapsR :: Handler RepHtml
 getSingMapsR = do
+    singMaps <- runDB $ selectList [] [Asc SingMapId]
     (widget,enctype) <- generateFormPost singMapForm
-    let handlerName = "getSigMapsR" :: Text
     defaultLayout $ do
         aDomId <- lift newIdent
         setTitle "Hey!"

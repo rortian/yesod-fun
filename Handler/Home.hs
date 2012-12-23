@@ -34,6 +34,7 @@ getSingMapsR = do
           <td>#{singMapM singMap}
           <td>#{singMapN singMap}
           <td>#{singMapLambdaX singMap} + #{singMapLambdaY singMap}i
+          <td><a href="@{SingMapR singMapId}">Link!</a>
     <thead>
 
       <th>
@@ -45,12 +46,13 @@ getSingMapsR = do
       <th>
         lambda
 
+      <th>
+        link
+
 
 
 <div #form>
-  This is an example trivial Form. Read the #
-  \<a href="http://www.yesodweb.com/book/forms">Forms chapter</a> #
-  on the yesod book to learn more about them.
+  Enter a new map
   <form method=post action=@{SingMapsR}#form enctype=#{enctype}>
     ^{widget}
     <input type="submit" value="Send it!">

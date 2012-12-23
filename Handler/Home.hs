@@ -40,7 +40,8 @@ sampleForm = renderDivs $ (,)
 
 getSingMapsR :: Handler RepHtml
 getSingMapsR = do
-    singMaps <- runDB $ selectList [] [Asc SingMapId]
+    entities <- runDB $ selectList [] [Desc SingMapId]
+    liftIO $ print entities
     (widget,enctype) <- generateFormPost singMapForm
     defaultLayout $ do
         aDomId <- lift newIdent

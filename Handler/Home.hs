@@ -14,6 +14,25 @@ getHomeR :: Handler RepHtml
 getHomeR = do
     redirect SingMapsR
 
+getGridsR :: Handler RepHtml
+getGridsR = do
+    redirect SingMapsR
+
+postGridsR :: Handler RepHtml
+postGridsR = do
+    redirect SingMapsR
+
+getGridR :: GridId -> Handler RepHtml
+getGridR gridId = do
+    (grid) <- runDB $ do
+        grid <- get404 gridId
+        return (grid)
+    defaultLayout $ do
+        aDomId <- lift newIdent
+        setTitle "Nice Grid"
+        $(widgetFile "grid_single")
+
+
 getSingMapsR :: Handler RepHtml
 getSingMapsR = do
     entries <- runDB $ selectList [] [Desc SingMapId]

@@ -7,4 +7,7 @@
 /singmaps SingMapsR GET POST
 /singmaps/#SingMapId SingMapR GET
 
+/grids GridsR GET POST
+/grids/#GridId GridR GET
+
 / HomeR GET

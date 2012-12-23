@@ -56,7 +56,7 @@ getSingMapsR = do
 
 
 $forall Entity singMapId singMap <- entries
-  <div>#{singMapId}
+  <div>#{singMapM singMap}
 
 
 

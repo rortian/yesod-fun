@@ -7,4 +7,4 @@
 /singmaps SingMapsR GET POST
 /singmaps/#SingMapId SingMapR GET
 
-/ HomeR GET POST
+/ HomeR GET

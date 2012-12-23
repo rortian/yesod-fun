@@ -143,6 +143,9 @@ instance YesodAuth App where
 instance RenderMessage App FormMessage where
     renderMessage _ _ = defaultFormMessage
 
+instance RenderMessage App Double where
+    renderMessage _ _ _ = "Hello"
+
 -- | Get the 'Extra' value, used to hold data from the settings.yml file.
 getExtra :: Handler Extra
 getExtra = fmap (appExtra . settings) getYesod

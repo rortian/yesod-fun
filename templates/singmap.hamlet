@@ -6,8 +6,6 @@
       id
 
 
-#{entities}
-
 
 
 <div #form>
@@ -17,3 +15,4 @@
   <form method=post action=@{SingMapsR}#form enctype=#{enctype}>
     ^{widget}
     <input type="submit" value="Send it!">
+

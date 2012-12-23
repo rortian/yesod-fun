@@ -40,13 +40,34 @@ sampleForm = renderDivs $ (,)
 
 getSingMapsR :: Handler RepHtml
 getSingMapsR = do
-    entities <- runDB $ selectList [] [Desc SingMapId]
-    liftIO $ print entities
+    entries <- runDB $ selectList [] [Desc SingMapId]
+    liftIO $ print entries
     (widget,enctype) <- generateFormPost singMapForm
     defaultLayout $ do
         aDomId <- lift newIdent
         setTitle "Hey!"
-        $(widgetFile "singmap")
+        [whamlet|
+<table>
+
+  <tr>
+
+    <th>
+      id
+
+
+$forall Entity singMapId singMap <- entries
+  <div>#{singMapId}
+
+
+
+<div #form>
+  This is an example trivial Form. Read the #
+  \<a href="http://www.yesodweb.com/book/forms">Forms chapter</a> #
+  on the yesod book to learn more about them.
+  <form method=post action=@{SingMapsR}#form enctype=#{enctype}>
+    ^{widget}
+    <input type="submit" value="Send it!">
+|]
 
 singMapForm :: Html -> MForm App App (FormResult SingMap, Widget)
 singMapForm = renderDivs $ SingMap

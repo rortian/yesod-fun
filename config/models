@@ -13,5 +13,24 @@ SingMap
     lambdaX Double
     lambdaY Double
     deriving Show
+Grid
+    width Int
+    height Int
+    scale Double
+    mapId SingMapId
+    deriving Show
+Spectrum
+    name Text
+    red [Double]
+    blue [Double]
+    green [Double]
+Rendering
+    gridId GridId
+    spectrumId SpectrumId
+ZoomIn
+    renderingId RenderingId
+    x Double
+    y Double
+
 
  -- By default this file is used in Model.hs (which is imported by Foundation.hs)

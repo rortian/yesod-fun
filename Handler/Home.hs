@@ -47,16 +47,27 @@ getSingMapsR = do
         aDomId <- lift newIdent
         setTitle "Hey!"
         [whamlet|
-<table>
+<table width="80%">
 
   <tr>
 
-    <th>
-      id
+    <tbody align="center">
 
+      $forall Entity singMapId singMap <- entries
+        <tr>
+          <td>#{singMapM singMap}
+          <td>#{singMapN singMap}
+          <td>#{singMapLambdaX singMap} + #{singMapLambdaY singMap}i
+    <thead>
 
-$forall Entity singMapId singMap <- entries
-  <div>#{singMapM singMap}
+      <th>
+        m
+
+      <th>
+        n
+
+      <th>
+        lambda
 
 
 

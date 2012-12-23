@@ -38,7 +38,7 @@ gridForm = renderDivs $ Grid
                 maps :: GHandler App App (OptionList SingMapId)
                 maps = do
                     entities <- runDB $ selectList [] [Desc SingMapId]
-                    optionsPairs $ map (\singmap -> (singMapLambdaX $ entityVal singmap,entityKey singmap)) entities
+                    optionsPairs $ map (\singmap -> (entityVal singmap,entityKey singmap)) entities
 
 getGridR :: GridId -> Handler RepHtml
 getGridR gridId = do

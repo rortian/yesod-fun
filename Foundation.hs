@@ -143,7 +143,7 @@ instance YesodAuth App where
 instance RenderMessage App FormMessage where
     renderMessage _ _ = defaultFormMessage
 
-instance RenderMessage App Double where
+instance RenderMessage App SingMap where
     renderMessage _ _ _ = "Hello"
 
 -- | Get the 'Extra' value, used to hold data from the settings.yml file.

@@ -5,3 +5,6 @@
 
   <li>
     n: #{singMapN singMap}
+
+  <li>
+    lambda: #{singMapLambdaX singMap} + #{singMapLambdaY singMap}i

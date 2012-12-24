@@ -24,7 +24,13 @@ getGridsR = do
 
 postGridsR :: Handler RepHtml
 postGridsR = do
-    redirect SingMapsR
+    ((result,_),_) <- runFormPost gridForm
+    case result of
+        FormSuccess grid -> do
+            entryId <- runDB $ insert grid
+            redirect (GridR entryId)
+        _ -> do
+            redirect GridsR
 
 gridForm :: Html -> MForm App App (FormResult Grid, Widget)
 gridForm = renderDivs $ Grid

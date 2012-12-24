@@ -1,2 +1,6 @@
 <div>
   Hi
+<div>
+  width #{gridWidth grid}
+  height #{gridHeight grid}
+  scale #{gridScale grid}

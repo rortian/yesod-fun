@@ -82,6 +82,7 @@ instance Yesod App where
         pc <- widgetToPageContent $ do
             $(widgetFile "normalize")
             addStylesheet $ StaticR css_bootstrap_css
+            addScriptRemote "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"
             $(widgetFile "default-layout")
         hamletToRepHtml $(hamletFile "templates/default-layout-wrapper.hamlet")
 
@@ -101,7 +102,7 @@ instance Yesod App where
     addStaticContent = addStaticContentExternal minifym base64md5 Settings.staticDir (StaticR . flip StaticRoute [])
 
     -- Place Javascript at bottom of the body tag so the rest of the page loads first
-    jsLoader _ = BottomOfBody
+    jsLoader _ = BottomOfHeadBlocking
 
     -- What messages should be logged. The following includes all messages when
     -- in development, and warnings and errors in production.

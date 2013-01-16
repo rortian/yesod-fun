@@ -66,6 +66,26 @@ getGridR gridId = do
         setTitle "Nice Grid"
         $(widgetFile "grid_single")
 
+doubleListField :: RenderMessage master FormMessage => Field sub master [Double]
+doubleListField = Field
+    { fieldParse = parse json $ parseHelper $ Right
+
+    , fieldView = \theId name attrs val isReq -> toWidget [hamlet|
+$newline never
+<input id="#{theId}" name="#{name}" *{attrs} type="number" :isReq:required="" value="Hey">
+|]
+    }
+
+textFieldTwo :: RenderMessage master FormMessage => Field sub master Text
+textFieldTwo = Field
+    { fieldParse = parseHelper $ Right
+    , fieldView = \theId name attrs val isReq ->
+        [whamlet|
+$newline never
+<input id="#{theId}" name="#{name}" *{attrs} type="text" :isReq:required value="#{either id id val}">
+|]
+    } 
+
 
 getSingMapsR :: Handler RepHtml
 getSingMapsR = do

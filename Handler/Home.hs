@@ -3,7 +3,8 @@ module Handler.Home where
 
 import Import
 import Data.Aeson.Parser
-import Data.Aeson
+import Data.Attoparsec
+import Data.Text.Encoding
 
 -- This is a handler function for the GET request method on the HomeR
 -- resource pattern. All of your resource patterns are defined in
@@ -15,6 +16,13 @@ import Data.Aeson
 getHomeR :: Handler RepHtml
 getHomeR = do
     redirect SingMapsR
+
+getSpectrumsR :: Handler RepHtml
+getSpectrumsR = do
+    defaultLayout $ do
+        aDomId <- lift newIdent
+        setTitle "Spectrums with Angular"
+        $(widgetFile "spectrums")
 
 getGridsR :: Handler RepHtml
 getGridsR = do
@@ -57,22 +65,6 @@ getGridR gridId = do
         aDomId <- lift newIdent
         setTitle "Nice Grid"
         $(widgetFile "grid_single")
-
-doubleListField :: RenderMessage master FormMessage => Field sub master [Double]
-doubleListField = Field
-    { fieldParse = parseHelper $ \s ->
-        case parseJSON (Array s) of
-            Right (a, "") -> Right a
-            Error e -> Left $ MsgInvalidInteger s
-
-    , fieldView = \theId name attrs val isReq -> toWidget [hamlet|
-$newline never
-<input id="#{theId}" name="#{name}" *{attrs} type="number" :isReq:required="" value="Hey">
-|]
-    }
-
-
-
 
 
 getSingMapsR :: Handler RepHtml

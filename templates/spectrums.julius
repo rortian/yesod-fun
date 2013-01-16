@@ -1,0 +1,10 @@
+
+function SpectrumCtl($scope){
+  $scope.master={}
+
+  $scope.update = function(spectrum){
+    $scope.master = angular.copy(spectrum);
+  }
+}
+
+SpectrumCtl.$inject = ['$scope']

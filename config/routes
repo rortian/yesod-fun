@@ -10,4 +10,6 @@
 /grids GridsR GET POST
 /grids/#GridId GridR GET
 
+/spectrums SpectrumsR GET
+
 / HomeR GET

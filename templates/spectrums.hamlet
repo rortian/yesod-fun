@@ -1,0 +1,7 @@
+<div ng-controller="SpectrumCtl">
+
+  <form class="simple-form">
+    Name: <input type="text" ng-model="spectrum.name" /><br />
+    Red: <input type="text" ng-model="spectrum.red" /><br />
+    Green: <input type="text" ng-model="spectrum.green" /><br />
+    Blue: <input type="text" ng-model="spectrum.blue" /><br />
